@@ -49,15 +49,16 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: emailCtr,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter email';
+                 return 'Please enter email';
                 }
                 return null;
               },
+              
               decoration: const InputDecoration(
                 labelText: 'Email',
                 icon: Icon(Icons.person),
               ),
-              onChanged: (value) => emailCtr,
+              onChanged: (value) => emailCtr ,
             ),
             const SizedBox(
               height: 8.0,
@@ -88,13 +89,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 textStyle: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Processing Data'),
-                    ),
-                  );
-                }
+                // if (_formKey.currentState!.validate()) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //      SnackBar(
+                //       content:  Text('Processing Data'),
+                //     ),
+                //   );
+                // } 
               },
               child: Text('Login'),
             ),
