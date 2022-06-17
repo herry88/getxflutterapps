@@ -10,6 +10,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final LoginViewModel _viewModel = Get.put(LoginViewModel());
   TextEditingController emailCtr = TextEditingController();
   TextEditingController passwordCtr = TextEditingController();
 
@@ -49,16 +50,15 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: emailCtr,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                 return 'Please enter email';
+                  return 'Please enter email';
                 }
                 return null;
               },
-              
               decoration: const InputDecoration(
                 labelText: 'Email',
                 icon: Icon(Icons.person),
               ),
-              onChanged: (value) => emailCtr ,
+              onChanged: (value) => emailCtr,
             ),
             const SizedBox(
               height: 8.0,
@@ -88,14 +88,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 minimumSize: const Size.fromHeight(50.0),
                 textStyle: TextStyle(color: Colors.white),
               ),
-              onPressed: () {
-                // if (_formKey.currentState!.validate()) {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //      SnackBar(
-                //       content:  Text('Processing Data'),
-                //     ),
-                //   );
-                // } 
+              onPressed: () async {
+                if (_formKey.currentState?.validate() ?? false) {
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //    SnackBar(
+                  //     content:  Text('Processing Data'),
+                  //   ),
+                  // );
+                  await _viewModel.loginUser(
+                    emailCtr.text,
+                    passwordCtr.text,
+                  );
+                }
               },
               child: Text('Login'),
             ),
