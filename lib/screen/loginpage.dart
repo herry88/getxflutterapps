@@ -10,6 +10,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final AuthenticationManager _authManager = Get.put(AuthenticationManager());
+  final LoginViewModel _viewModel = Get.put(LoginViewModel());
   TextEditingController emailCtr = TextEditingController();
   TextEditingController passwordCtr = TextEditingController();
 
@@ -87,12 +89,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 minimumSize: const Size.fromHeight(50.0),
                 textStyle: TextStyle(color: Colors.white),
               ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Processing Data'),
-                    ),
+              onPressed: () async {
+                if (_formKey.currentState?.validate() ?? false) {
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //    SnackBar(
+                  //     content:  Text('Processing Data'),
+                  //   ),
+                  // );
+                  await _viewModel.loginUser(
+                    emailCtr.text,
+                    passwordCtr.text,
                   );
                 }
               },

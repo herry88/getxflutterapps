@@ -12,16 +12,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'GetX',
-      getPages: [
-        GetPage(
-          name: '/',
-          page: () => LoginScreen(),
-        ),
-        // GetPage(
-        //   name: '/start',
-        //   page: () => StartScreen(),
-        // ),
-      ],
+      // getPages: [
+      //   GetPage(
+      //     name: '/',
+      //     page: () => LoginScreen(),
+      //   ),
+      //   // GetPage(
+      //   //   name: '/start',
+      //   //   page: () => StartScreen(),
+      //   // ),
+      // ],
+      home: SplashScreen(),
     );
   }
 }
