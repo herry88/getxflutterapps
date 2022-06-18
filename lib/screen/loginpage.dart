@@ -10,6 +10,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final AuthenticationManager _authManager = Get.put(AuthenticationManager());
   final LoginViewModel _viewModel = Get.put(LoginViewModel());
   TextEditingController emailCtr = TextEditingController();
   TextEditingController passwordCtr = TextEditingController();
